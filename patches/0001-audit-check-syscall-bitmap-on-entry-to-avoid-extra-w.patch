@@ -228,7 +228,8 @@ index addeed3df15d..eb8296474bb2 100644
  struct audit_aux_data {
  	struct audit_aux_data	*next;
  	int			type;
-@@ -790,22 +799,6 @@ static enum audit_state audit_filter_task(struct task_struct *tsk, char **key)
+    
+@@ -798,22 +798,6 @@
  	return AUDIT_STATE_BUILD;
  }
  
@@ -248,9 +249,10 @@ index addeed3df15d..eb8296474bb2 100644
 -	return rule->mask[word] & bit;
 -}
 -
- /**
-  * __audit_filter_op - common filter helper for operations (syscall/uring/etc)
-  * @tsk: associated task
+ /* At syscall exit time, this filter is called if the audit_state is
+  * not low enough that auditing cannot take place, but is also not
+  * high enough that we already know we have to write an audit record
+
 @@ -2025,6 +2018,8 @@ void __audit_syscall_entry(int major, unsigned long a1, unsigned long a2,
  		return;
  
@@ -262,4 +264,3 @@ index addeed3df15d..eb8296474bb2 100644
  		if (auditd_test_task(current))
 -- 
 2.41.0
-
