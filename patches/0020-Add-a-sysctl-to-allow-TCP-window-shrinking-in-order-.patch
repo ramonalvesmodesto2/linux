@@ -188,7 +188,7 @@ index 85f9a3a99bd6..c08cb445d5f7 100644
  	/* MSS for the peer's data.  Previous versions used mss_clamp
  	 * here.  I don't know if the value based on our guesses
  	 * of peer's MSS is better for the performance.  It's more correct
-@@ -2977,16 +2982,24 @@ u32 __tcp_select_window(struct sock *sk)
+@@ -2986,6 +2986,12 @@
  		if (mss <= 0)
  			return 0;
  	}
@@ -201,8 +201,9 @@ index 85f9a3a99bd6..c08cb445d5f7 100644
  	if (free_space < (full_space >> 1)) {
  		icsk->icsk_ack.quick = 0;
  
- 		if (tcp_under_memory_pressure(sk))
- 			tcp_adjust_rcv_ssthresh(sk);
+@@ -2993,10 +2999,12 @@
+ 			tp->rcv_ssthresh = min(tp->rcv_ssthresh,
+ 					       4U * tp->advmss);
  
 -		/* free_space might become our new window, make sure we don't
 -		 * increase it due to wscale.
@@ -217,6 +218,7 @@ index 85f9a3a99bd6..c08cb445d5f7 100644
  
  		/* if free space is less than mss estimate, or is below 1/16th
  		 * of the maximum allowed, try to move to zero-window, else
+
 @@ -2997,10 +3010,24 @@ u32 __tcp_select_window(struct sock *sk)
  		 */
  		if (free_space < (allowed_space >> 4) || free_space < mss)
@@ -264,4 +266,3 @@ index 85f9a3a99bd6..c08cb445d5f7 100644
  		/* Get the largest window that is a nice multiple of mss.
 -- 
 2.39.2
-
