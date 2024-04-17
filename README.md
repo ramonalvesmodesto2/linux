@@ -1,5 +1,5 @@
 # Aplicando patches no openwrt
-```
+```bash
 # sudo apt install build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget
 # sudo pacman -S --needed base-devel autoconf automake bash binutils bison bzip2 fakeroot file findutils flex gawk gcc gettext git grep groff gzip libelf libtool libxslt m4 make ncurses openssl patch pkgconf python rsync sed texinfo time unzip util-linux wget which zlib
 
