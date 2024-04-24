@@ -34,6 +34,7 @@ ionice -c 3 chrt --idle 0 nice -n19 make -j8
 ## Como usar
 Edite o arquivo /etc/sysctl.conf
 ```ash
+net.ipv4.tcp_congestion_control = hybla_max
 net.ipv4.tcp_collapse_max_bytes = 6291456
 net.ipv4.tcp_notsent_lowat = 131072
 net.ipv4.tcp_shrink_window = 1
