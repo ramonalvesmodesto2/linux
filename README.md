@@ -1,5 +1,5 @@
 # Aplicando patches no openwrt
-```bash
+```ash
 # sudo apt install build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget
 # sudo pacman -S --needed base-devel autoconf automake bash binutils bison bzip2 fakeroot file findutils flex gawk gcc gettext git grep groff gzip libelf libtool libxslt m4 make ncurses openssl patch pkgconf python rsync sed texinfo time unzip util-linux wget which zlib
 
@@ -29,6 +29,14 @@ make target/linux/update
 make -j8 target/linux/{clean,prepare} V=s QUILT=1
 ionice -c 3 chrt --idle 0 nice -n19 make -j8
 
+```
+
+## Como usar
+Edite o arquivo /etc/sysctl.conf
+```ash
+net.ipv4.tcp_collapse_max_bytes = 6291456
+net.ipv4.tcp_notsent_lowat = 131072
+net.ipv4.tcp_shrink_window = 1
 ```
 
 # Cloudflare Linux Kernel Patches
